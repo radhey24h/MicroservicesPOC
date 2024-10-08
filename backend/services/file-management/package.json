@@ -3,15 +3,10 @@
   "version": "1.0.0",
   "main": "src/server.ts",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "start:dev": "tsc && node --env-file=.env.development dist/server.js",
-    "start:staging": "tsc && node --env-file=.env.staging dist/server.js",
-    "start:prod": "tsc && node --env-file=.env.production node dist/server.js",
-    "test": "jest --config jest.config.ts --detectOpenHandles --coverage --maxWorkers=1",
-    "docker:build": "docker build -t your-api-name .",
-    "docker:run:dev": "docker run -p 3000:3000 --env-file .env.development your-api-name",
-    "docker:run:staging": "docker run -p 3000:3000 --env-file .env.staging your-api-name",
-    "docker:run:prod": "docker run -p 3000:3000 --env-file .env.production your-api-name"
+    "start:env": "npm run build && cross-env NODE_ENV=$1 node dist/server.js",
+    "test": "jest --config jest.config.ts --detectOpenHandles --coverage --maxWorkers=1"
   },
   "keywords": [],
   "author": "",

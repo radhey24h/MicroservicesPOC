@@ -3,12 +3,15 @@ FROM node:18-alpine
 
 # Set the working directory
 WORKDIR /usr/src/app
+EXPOSE 80
+EXPOSE 443
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install 
+# --production
 
 # Copy the rest of the application code
 COPY . .
@@ -16,14 +19,11 @@ COPY . .
 # Build the TypeScript code
 RUN npm run build
 
-# Expose the port the app runs on
-EXPOSE 3000
-
 # Define environment variable
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-# Start the app
+# Start the app using the production build
 CMD ["node", "dist/server.js"]
 
 # docker build --build-arg NODE_ENV=development -t my-api:dev .

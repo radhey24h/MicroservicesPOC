@@ -138,3 +138,6 @@ npm run docker:run:qa
 Run Docker Container in Production Mode:
 
 npm run docker:run:prod
+
+
+docker run -p 5002:5002 filemanagement:latest

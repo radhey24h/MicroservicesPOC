@@ -1,13 +1,10 @@
 import * as dotenv from 'dotenv';
 
-import logging from './logging';
-
-
 // Load environment variables from the appropriate .env file
-// logging.info(`NODE_ENV: ${process.env.NODE_ENV}`);
 
-//dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-dotenv.config();
+const envPath = `.env.${process.env.NODE_ENV || 'development'}`;
+dotenv.config({ path: envPath });
+//dotenv.config();
 export const config = {
   environment: process.env.NODE_ENV === 'local',
   server: {
