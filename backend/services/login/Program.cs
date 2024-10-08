@@ -1,6 +1,6 @@
 using FluentValidation;
-using login.Models.Entities;
-using login.Services.UserService;
+using Login.Models.Entities;
+using Login.Services.UserService;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,8 +41,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();

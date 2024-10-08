@@ -1,12 +1,10 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Login.Models.DTO.User;
+using Login.Models.Entities;
+using Login.Models.Enums;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Microsoft.Extensions.Configuration;
-using login.Models.Entities;
-using login.Models.Enums;
-using login.Models.DTO.User;
 
-namespace login.Services.UserService
+namespace Login.Services.UserService
 {
     public class UserService : IUserService
     {
@@ -38,7 +36,7 @@ namespace login.Services.UserService
             var result = await _userCollection.FindAsync(filter);
             return await result.FirstOrDefaultAsync();
         }
-        public async Task<(Users user, string message)> GetAuthenticatedUserAsync(Login login)
+        public async Task<(Users user, string message)> GetAuthenticatedUserAsync(LoginModel login)
         {
             var filter = Builders<Users>.Filter.Eq("userID", login.Username);
             var user = await _userCollection.Find(filter).FirstOrDefaultAsync();

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-namespace login.Models.Entities;
+namespace Login.Models.Entities;
 public class BaseEntity
 {
     [BsonId]

@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using login.Models.DTO.User;
-using login.Models.Entities;
-using login.Models.Enums;
-using login.Services.UserService;
-using Microsoft.AspNetCore.Http;
+using Login.Models.DTO.User;
+using Login.Models.Entities;
+using Login.Models.Enums;
+using Login.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
-namespace login.Controllers;
+namespace Login.Controllers;
 
 [Route("userapi/[action]")]
 [ApiController]
@@ -74,7 +72,7 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost(Name = "loginUser")]
-    public async Task<IActionResult> LoginUser([FromBody] Login login)
+    public async Task<IActionResult> LoginUser([FromBody] LoginModel login)
     {
         var (user, message) = await _userService.GetAuthenticatedUserAsync(login);
         return Ok(new { User = user, Message = message });

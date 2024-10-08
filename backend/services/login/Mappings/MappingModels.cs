@@ -1,7 +1,7 @@
-﻿namespace login.Mapping;
+﻿namespace Login.Mapping;
 using AutoMapper;
-using login.Models.DTO.User;
-using login.Models.Entities;
+using Login.Models.DTO.User;
+using Login.Models.Entities;
 
 public class MappingModels : Profile
 {

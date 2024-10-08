@@ -1,8 +1,8 @@
-﻿using login.Models.DTO.User;
-using login.Models.Entities;
-using login.Models.Enums;
+﻿using Login.Models.DTO.User;
+using Login.Models.Entities;
+using Login.Models.Enums;
 
-namespace login.Services.UserService
+namespace Login.Services.UserService
 {
     public interface IUserService
     {
@@ -11,7 +11,7 @@ namespace login.Services.UserService
         Task DeleteUserAsync(string id);
         Task CreateUserAsync(Users user);
         Task UpdateUserAsync(string id, Users user);
-        Task<(Users user, string message)> GetAuthenticatedUserAsync(Login login);
+        Task<(Users user, string message)> GetAuthenticatedUserAsync(LoginModel login);
         Task CreateBulkUserAsync(bool deletePreviousRecord, int totalRecord);
         Task<bool> UpdateUserPassword(UpdatePassword userPassword);
         Task<bool> UpdateUserPermission(string id, IEnumerable<Role> roles);

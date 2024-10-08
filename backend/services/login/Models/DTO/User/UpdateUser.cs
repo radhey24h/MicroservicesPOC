@@ -1,6 +1,6 @@
-﻿using login.Models.Enums;
+﻿using Login.Models.Enums;
 
-namespace login.Models.DTO.User;
+namespace Login.Models.DTO.User;
 
 public class UpdateUser
 {

@@ -1,4 +1,4 @@
-﻿namespace login.Models.DTO.User
+﻿namespace Login.Models.DTO.User
 {
     public class UpdatePassword
     {

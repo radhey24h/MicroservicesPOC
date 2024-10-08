@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-namespace login.Models.DTO.User.CommandValidator;
+namespace Login.Models.DTO.User.CommandValidator;
 
 public class UpdateUserValidator : AbstractValidator<UpdateUser>
 {
