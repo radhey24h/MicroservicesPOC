@@ -63,7 +63,7 @@ namespace Mailer.Template
                             <p><strong>Name:</strong> {user.Name}</p>
                             <p><strong>Email:</strong> {user.Email}</p>
                             <p><strong>Phone Number:</strong> {user.PhoneNumber}</p>
-                            <p><strong>Location:</strong> {user.Location}</p>
+                            <p><strong>Subject:</strong> {user.Subject}</p>
                             <p><strong>User Type:</strong> {user.UserType}</p>
                         </div>
                         <div class='footer'>

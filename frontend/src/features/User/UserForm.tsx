@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface User {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     subject: string;
     phoneNumber: string;
@@ -10,7 +11,9 @@ interface User {
 }
 
 const UserForm: React.FC = () => {
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -36,8 +39,8 @@ const UserForm: React.FC = () => {
         setError(''); // Reset validation error
 
         // Validate fields
-        if (!name.trim()) {
-            setError('Name is required.');
+        if (!firstName.trim()) {
+            setError('First Name is required.');
             setLoading(false);
             return;
         }
@@ -49,7 +52,8 @@ const UserForm: React.FC = () => {
         }
 
         const user: User = {
-            name,
+            firstName,
+            lastName,
             email,
             subject,
             phoneNumber,
@@ -60,7 +64,8 @@ const UserForm: React.FC = () => {
             await axios.post('/api/users', user);
             setLoading(false);
             // You can reset the form here if needed
-            setName('');
+            setFirstName('');
+            setLastName('');
             setEmail('');
             setSubject('');
             setPhoneNumber('');
@@ -73,8 +78,13 @@ const UserForm: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <input type="text" className="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+            <div className="row">
+                <div className="col-md-6 mb-3">
+                    <input type="text" className="form-control" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                </div>
+                <div className="col-md-6 mb-3">
+                    <input type="text" className="form-control" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                </div>
             </div>
             <div className="mb-3">
                 <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
