@@ -6,6 +6,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+docker rmi -f $(docker images -aq)
+docker rm -v -f $(docker ps -qa)
+
+docker build -t frontend:latest .
+
 ### `yarn start`
 
 Runs the app in the development mode.\
