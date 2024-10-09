@@ -75,15 +75,6 @@ const Dashboard = () => {
 
             <div className="container" style={{ position: 'relative' }}>
                 <Header />
-                <div className="row text-center mb-4">
-                    <div className="col-12 d-flex justify-content-center">
-                        <div className="elementor-heading">
-                            <h2 className="fadeInDown" data-text="Transform Learning into Employment...!">
-                                Transform Learning into Employment...!
-                            </h2>
-                        </div>
-                    </div>
-                </div>
                 <div className="row form-background">
                     <div className="dashoard-continer">
 

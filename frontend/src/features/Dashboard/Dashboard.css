@@ -1,10 +1,10 @@
-
 @media (max-width: 1366px) {
     .elementor-image img {
         width: 45%;
     }
+
     #tsparticles {
-        height:100%;
+        height: 100%;
     }
 }
 
@@ -12,8 +12,9 @@
     .elementor-image img {
         width: 45%;
     }
+
     #tsparticles {
-        height:100%;
+        height: 100%;
     }
 }
 
@@ -21,8 +22,9 @@
     .elementor-image img {
         width: 45%;
     }
+
     #tsparticles {
-        height:135%;
+        height: 135%;
     }
 }
 
@@ -30,13 +32,14 @@
     .elementor-image img {
         width: 60%;
     }
+
     #tsparticles {
-        height:120%;
+        height: 120%;
     }
 }
 
 .navigation-right {
-    text-align: right!important;
+    text-align: right !important;
     padding: 1px;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.7);
@@ -78,16 +81,19 @@
     justify-content: center;
 }
 
-.elementor-box-one, .elementor-box-two {
+.elementor-box-one,
+.elementor-box-two {
     text-align: center;
 }
 
-.elementor-box-two a:hover, .elementor-box-one a:hover {
+.elementor-box-two a:hover,
+.elementor-box-one a:hover {
     text-decoration: none;
     color: #F9B615;
 }
 
-.elementor-box-two a img, .elementor-box-one a img {
+.elementor-box-two a img,
+.elementor-box-one a img {
     width: 270px;
     height: 210px;
 }
@@ -110,7 +116,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 0%;
-    width:47%;
+    width: 47%;
 }
 
 .elementor-heading h2 {
@@ -139,7 +145,7 @@
 }
 
 a {
-    color: #F9B615!important;
+    color: #F9B615 !important;
 }
 
 .fadeInDown {
@@ -161,20 +167,27 @@ a {
 }
 
 @keyframes animate {
-    0%, 10%, 100% {
+
+    0%,
+    10%,
+    100% {
         width: 0;
     }
-    70%, 90% {
+
+    70%,
+    90% {
         width: 100%;
     }
 }
-.form-background{
+
+.form-background {
     background-color: rgba(99, 160, 216, 0.653);
     border-radius: 8px;
     padding: 20px;
     color: #333;
 }
-.dashoard-continer{
-    height: 450px;
+
+.dashoard-continer {
+    height: 550px;
     width: 900px;
 }

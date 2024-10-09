@@ -3,13 +3,13 @@ import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import ITImages from '../../assets/img/hero-it-img.png';
-import Register from "../User/Register/Register";
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import Login from "../User/Login/Login";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import UserForm from "../User/UserForm";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const [loginOrRegister, setLoginOrRegister] = useState(false);
@@ -90,24 +90,28 @@ const Home = () => {
                             </h2>
                         </div>
                     </div>
+                    <div className="marquee-container">
+                        <h5 className="marquee-text elementor-fadeInDown">
+                            We are offering free training sessions on AWS, Azure, React-JS and dotnet core.
+                        </h5>
+                    </div>
                 </div>
                 <br /><br />
                 <div className="row">
                     <div className="col-md-7 text-center mb-4">
-                        <img src={ITImages} alt="IT Trainings" className="img-fluid" style={{ height: '60%', width: '50%' }} />
-                        <h5 className="elementor-fadeInDown">
-                            We are offering free training sessions on AWS, Azure, React-JS and dotnet core.
-                            <br></br>Sessions are held daily from 8:00 to 10:00 PM.
-                        </h5>
+                        <Link to="/dashboard">
+                            <img src={ITImages} alt="IT Trainings" className="img-fluid" style={{ height: '75%', width: '70%' }} />
+                            <h2 className="elementor-fadeInDown">
+                                Study Materials
+                            </h2>
+                        </Link>
                     </div>
                     <div className="col-md-5 text-center mb-4">
                         <div className="form-background">
-                            <h5 className="elementor-fadeInDown">Please enter your details here! &nbsp;
-                                <a style={{ cursor: 'pointer' }} onClick={toggleView} >
-                                    {loginOrRegister ? 'Register' : 'Login'}
-                                </a></h5>
+                            <h5 className="elementor-fadeInDown">Please enter your details for free session! &nbsp;
+                            </h5>
                             <br />
-                            {loginOrRegister ? <Login /> : <Register />}
+                            <UserForm />
                         </div>
                     </div>
                 </div>

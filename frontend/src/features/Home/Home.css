@@ -174,3 +174,30 @@ a {
     padding: 20px;
     color: #333;
 }
+
+.marquee-container {
+    width: 100%; /* Adjust to your container width */
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-text {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    animation: marquee-bounce 5s ease-in-out infinite;
+}
+
+@keyframes marquee-bounce {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(25%); /* Moves the text to the right but not fully out of view */
+    }
+    100% {
+        transform: translateX(0); /* Returns to the starting point */
+    }
+}

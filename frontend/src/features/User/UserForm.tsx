@@ -4,19 +4,17 @@ import axios from 'axios';
 interface User {
     name: string;
     email: string;
-    location: string;
+    subject: string;
     phoneNumber: string;
     userType: string;
-    password: string;
 }
 
-const Register: React.FC = () => {
+const UserForm: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [location, setLocation] = useState('');
+    const [subject, setSubject] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [userType, setUserType] = useState('');
-    const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -50,18 +48,12 @@ const Register: React.FC = () => {
             return;
         }
 
-        if (!password.trim()) {
-            setError('Password is required.');
-            setLoading(false);
-            return;
-        }
         const user: User = {
             name,
             email,
-            location,
+            subject,
             phoneNumber,
             userType,
-            password
         };
 
         try {
@@ -70,10 +62,9 @@ const Register: React.FC = () => {
             // You can reset the form here if needed
             setName('');
             setEmail('');
-            setLocation('');
+            setSubject('');
             setPhoneNumber('');
             setUserType('');
-            setPassword('');
         } catch (err) {
             setError('Failed to submit the form. Please try again.');
             setLoading(false);
@@ -98,17 +89,15 @@ const Register: React.FC = () => {
                 </select>
             </div>
             <div className="mb-3">
-                <input type="text" className="form-control" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
-            </div>
-            <div className="mb-3">
-                <input type="password" className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="text" className="form-control" placeholder="Intrested in subject" value={subject} onChange={(e) => setSubject(e.target.value)} />
             </div>
             <button type="submit" className="btn btn-primary" disabled={loading}>
                 {loading ? 'Submitting...' : 'Submit'}
             </button>
+
             {error && <p className="mt-3 text-danger">{error}</p>}
         </form>
     );
 };
 
-export default Register;
+export default UserForm;
