@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 
 interface Login {
     password: string;
@@ -7,6 +9,7 @@ interface Login {
 }
 
 const Login: React.FC = () => {
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -23,21 +26,20 @@ const Login: React.FC = () => {
         };
     }, []);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-
         setError(''); // Reset validation error
 
-        // Validate fields
-        if (!password.trim()) {
-            setError('Name is required.');
-            setLoading(false);
-            return;
-        }
 
         if (!email.trim()) {
             setError('Email is required.');
+            setLoading(false);
+            return;
+        }
+        // Validate fields
+        if (!password.trim()) {
+            setError('Password is required.');
             setLoading(false);
             return;
         }
@@ -47,8 +49,10 @@ const Login: React.FC = () => {
             password,
         };
 
+        navigate('/dashboard'); // Use navigate to redirect
+
         try {
-            await axios.post('/api/users', user);
+            await axios.post('/api/login', user);
             setLoading(false);
             // You can reset the form here if needed
             setPassword('');
@@ -60,7 +64,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
             <div className="mb-3">
                 <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>

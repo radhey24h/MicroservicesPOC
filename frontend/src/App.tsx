@@ -1,9 +1,17 @@
 import Particle from "./components/Particle/Particle";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from "./features/Dashboard/Dashboard";
 
 function App() {
   return (
     <>
-      <Particle />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Particle />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          {/* Other routes */}
+        </Routes>
+      </Router>
     </>
   );
 }

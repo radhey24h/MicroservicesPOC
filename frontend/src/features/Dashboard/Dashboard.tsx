@@ -3,12 +3,9 @@ import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import logo from '../../assets/img/logo.png';
-import ITImages from '../../assets/img/hero-it-img.png';
-import Register from "../User/Register/Register";
-import './Particle.css';
+import './Dashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import Login from "../User/Login/Register";
 
 const Dashboard = () => {
     const [alreadyLogin, setAlreadyLogin] = useState(false);
@@ -100,13 +97,10 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <br /><br />
-                <div className="row">
-                <div className="form-background">
+                <div className="row form-background">
                     <div className="dashoard-continer">
 
                     </div>
-                </div>
                 </div>
                 <div className="row">
                     <div className="col-12 d-flex justify-content-center">
