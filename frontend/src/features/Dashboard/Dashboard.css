@@ -1,0 +1,180 @@
+
+@media (max-width: 1366px) {
+    .elementor-image img {
+        width: 45%;
+    }
+    #tsparticles {
+        height:100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .elementor-image img {
+        width: 45%;
+    }
+    #tsparticles {
+        height:100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .elementor-image img {
+        width: 45%;
+    }
+    #tsparticles {
+        height:135%;
+    }
+}
+
+@media (max-width: 768px) {
+    .elementor-image img {
+        width: 60%;
+    }
+    #tsparticles {
+        height:120%;
+    }
+}
+
+.navigation-right {
+    text-align: right!important;
+    padding: 1px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navigation-right i {
+    color: #F9B615;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+.elementor-widget-wrap {
+    position: relative;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+
+.elementor-image {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.elementor-image img {
+    height: auto;
+    border: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.elementor-box {
+    padding: 0;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.elementor-box-one, .elementor-box-two {
+    text-align: center;
+}
+
+.elementor-box-two a:hover, .elementor-box-one a:hover {
+    text-decoration: none;
+    color: #F9B615;
+}
+
+.elementor-box-two a img, .elementor-box-one a img {
+    width: 270px;
+    height: 210px;
+}
+
+.elementor-fadeInDown {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #fff;
+    text-align: center;
+}
+
+.scrollto {
+    text-align: center;
+}
+
+.elementor-heading {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0%;
+    width:47%;
+}
+
+.elementor-heading h2 {
+    color: #fff;
+    margin-top: 0px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.elementor-heading h2 span {
+    color: #F9B615;
+}
+
+.social-links {
+    position: relative;
+    padding: 10px;
+    margin-top: 5px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a i {
+    font-size: 1.5rem
+}
+
+a {
+    color: #F9B615!important;
+}
+
+.fadeInDown {
+    position: relative;
+}
+
+.fadeInDown::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color: #F9B615;
+    -webkit-text-stroke: 0vw #383d52;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    animation: animate 6s linear infinite;
+}
+
+@keyframes animate {
+    0%, 10%, 100% {
+        width: 0;
+    }
+    70%, 90% {
+        width: 100%;
+    }
+}
+.form-background{
+    background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    color: #333;
+}
+.dashoard-continer{
+    height: 400px;
+    width: 900px;
+}

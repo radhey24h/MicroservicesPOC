@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface User {
@@ -9,7 +9,7 @@ interface User {
     userType: string;
 }
 
-const UserForm: React.FC = () => {
+const Register: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [location, setLocation] = useState('');
@@ -18,9 +18,35 @@ const UserForm: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    const handleClickOutside = (e: MouseEvent) => {
+        setError('');
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+
+        setError(''); // Reset validation error
+
+        // Validate fields
+        if (!name.trim()) {
+            setError('Name is required.');
+            setLoading(false);
+            return;
+        }
+
+        if (!email.trim()) {
+            setError('Email is required.');
+            setLoading(false);
+            return;
+        }
 
         const user: User = {
             name,
@@ -74,4 +100,4 @@ const UserForm: React.FC = () => {
     );
 };
 
-export default UserForm;
+export default Register;

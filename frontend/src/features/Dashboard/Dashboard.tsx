@@ -4,20 +4,17 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import logo from '../../assets/img/logo.png';
 import ITImages from '../../assets/img/hero-it-img.png';
-import Register from "../../features/User/Register/Register";
+import Register from "../User/Register/Register";
 import './Particle.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import Login from "../../features/User/Login/Register";
+import Login from "../User/Login/Register";
 
-const Particle = () => {
-    const [loginOrRegister, setLoginOrRegister] = useState(false);
-
-    const toggleView = () => {
-        setLoginOrRegister(!loginOrRegister);
-    };
+const Dashboard = () => {
+    const [alreadyLogin, setAlreadyLogin] = useState(false);
 
     const particlesInit = useCallback(async (engine: Engine) => {
+
         await loadSlim(engine);
     }, []);
 
@@ -105,25 +102,12 @@ const Particle = () => {
                 </div>
                 <br /><br />
                 <div className="row">
-                    <div className="col-md-7 text-center mb-4">
-                        <img src={ITImages} alt="IT Trainings" className="img-fluid" style={{ height: '60%', width: '50%' }} />
-                        <h5 className="elementor-fadeInDown">
-                            We are offering free training sessions on AWS, Azure, React-JS and dotnet core.
-                            <br></br>Sessions are held daily from 6:00 to 9:00 PM.
-                        </h5>
-                    </div>
-                    <div className="col-md-5 text-center mb-4">
-                        <div className="form-background">
-                            <h5 className="elementor-fadeInDown">Please enter your details here! &nbsp;
-                                <a  style={{ cursor: 'pointer'}} onClick={toggleView} >
-                                    {loginOrRegister ? 'Register' : 'Login' }
-                                </a></h5>
-                            <br />
-                            {loginOrRegister ? <Login /> : <Register />}
-                        </div>
+                <div className="form-background">
+                    <div className="dashoard-continer">
+
                     </div>
                 </div>
-
+                </div>
                 <div className="row">
                     <div className="col-12 d-flex justify-content-center">
                         <div className="social-links d-flex justify-content-around">
@@ -151,4 +135,4 @@ const Particle = () => {
     );
 };
 
-export default Particle;
+export default Dashboard;
