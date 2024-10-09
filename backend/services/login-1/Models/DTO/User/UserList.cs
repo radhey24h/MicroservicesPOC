@@ -1,4 +1,4 @@
-﻿namespace Users.Models.DTO.User;
+﻿namespace login.Models.DTO.User;
 
 public class UserList
 {

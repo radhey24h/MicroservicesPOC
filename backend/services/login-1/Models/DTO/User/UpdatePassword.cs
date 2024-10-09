@@ -1,8 +1,8 @@
-﻿namespace Users.Models.DTO.User
+﻿namespace login.Models.DTO.User
 {
     public class UpdatePassword
     {
-        public string? EmailId { get; set; }
+        public string? Id { get; set; }
         public string? Password { get; set; }
     }
 }

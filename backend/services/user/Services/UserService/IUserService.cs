@@ -14,6 +14,5 @@ namespace Users.Services.UserService
         Task<(User user, string message)> GetAuthenticatedUserAsync(Login login);
         Task CreateBulkUserAsync(bool deletePreviousRecord, int totalRecord);
         Task<bool> UpdateUserPassword(UpdatePassword userPassword);
-        Task<bool> UpdateUserPermission(string id, IEnumerable<Role> roles);
     }
 }

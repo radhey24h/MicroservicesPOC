@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
-using Users.Models.DTO.User;
-using Users.Models.Entities;
-using Users.Models.Enums;
-using Users.Services.UserService;
+using login.Models.DTO.User;
+using login.Models.Entities;
+using login.Models.Enums;
+using login.Services.UserService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-namespace Users.Controllers;
+using System.Data;
+namespace login.Controllers;
 
 [Route("userapi/[action]")]
 [ApiController]
@@ -19,6 +21,17 @@ public class UserController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet(Name = "getUsers")]
+    public async Task<IActionResult> GetUsers()
+    {
+        var users = await _userService.GetUsersAsync();
+        if (users == null)
+        {
+            return NotFound();
+        }
+        var userList = _mapper.Map<IEnumerable<UserList>>(users);
+        return Ok(userList);
+    }
 
     [HttpGet("{id}", Name = "getUser")]
     public async Task<IActionResult> GetUser(string id)
@@ -32,17 +45,34 @@ public class UserController : ControllerBase
         return Ok(userDetails);
     }
 
-    [HttpGet(Name = "getUsers")]
-    public async Task<IActionResult> GetUsers()
+    [HttpGet("{id}", Name = "getUserDetails")]
+    public async Task<IActionResult> getUserDetails(string id)
     {
-        var users = await _userService.GetUsersAsync();
-        if (users == null)
+        var user = await _userService.GetUserByIdAsync(id);
+        if (user == null)
         {
-            return NotFound();
+            return Ok(new { Message = "User not found.!" });
         }
-        return Ok(users);
-    }
 
+        if (user.Roles.Contains(Role.Admin))
+        {
+            var users = await _userService.GetUsersAsync();
+            var result = new
+            {
+                userDetails = _mapper.Map<UserDetails>(user),
+                userList = _mapper.Map<IEnumerable<UserList>>(users)
+            };
+            return Ok(result);
+        }
+        else
+        {
+            var result = new
+            {
+                userDetails = _mapper.Map<UserDetails>(user),
+            };
+            return Ok(result);
+        }
+    }
     [HttpPost(Name = "loginUser")]
     public async Task<IActionResult> LoginUser([FromBody] Login login)
     {
@@ -57,14 +87,14 @@ public class UserController : ControllerBase
         {
             return BadRequest("Invalid user data");
         }
-        var mapUser = _mapper.Map<User>(user);
+        var mapUser = _mapper.Map<Users>(user);
         await _userService.CreateUserAsync(mapUser);
         return RedirectToAction("getUserDetails", new { id = mapUser.Id });
     }
     [HttpGet(Name = "createBulkUser")]
     public async Task<IActionResult> CreateBulkUser()
     {
-        await _userService.CreateBulkUserAsync(true, 2);
+        await _userService.CreateBulkUserAsync(true, 10);
         return Ok(true);
     }
 
@@ -129,7 +159,7 @@ public class UserController : ControllerBase
             return NotFound();
         }
         existingUser.Roles = roles;
-        var mapUser = _mapper.Map<User>(existingUser);
+        var mapUser = _mapper.Map<Users>(existingUser);
         await _userService.UpdateUserAsync(id, mapUser);
         return Ok(true);
 

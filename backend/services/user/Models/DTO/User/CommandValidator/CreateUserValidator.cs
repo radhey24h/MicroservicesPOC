@@ -6,10 +6,10 @@ public class CreateUserValidator : AbstractValidator<CreateUser>
 {
     public CreateUserValidator()
     {
-        RuleFor(p => p.UserID)
-               .NotEmpty().WithMessage("{UserID} is required.")
+        RuleFor(p => p.Email)
+               .NotEmpty().WithMessage("{Email} is required.")
                .NotNull()
-               .MaximumLength(50).WithMessage("{UserID} must not exceed 50 characters.");
+               .MaximumLength(200).WithMessage("{Email} must not exceed 200 characters.");
 
     }
 }
