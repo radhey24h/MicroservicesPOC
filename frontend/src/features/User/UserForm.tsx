@@ -13,11 +13,10 @@ interface User {
 const UserForm: React.FC = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [userType, setUserType] = useState('');
+    const [userType, setUserType] = useState('Student'); // Set default value if needed
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -35,8 +34,7 @@ const UserForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-
-        setError(''); // Reset validation error
+        setError('');
 
         // Validate fields
         if (!firstName.trim()) {
@@ -60,17 +58,19 @@ const UserForm: React.FC = () => {
             phoneNumber,
             userType,
         };
-debugger;
+        
+        console.log('Form submitted with userType:', userType); // Log userType
+
         try {
             await axios.post('https://localhost:7256/userapi/createUser', user);
             setLoading(false);
-            // You can reset the form here if needed
+            // Reset the form here if needed
             setFirstName('');
             setLastName('');
             setEmail('');
             setSubject('');
             setPhoneNumber('');
-            setUserType('');
+            setUserType('Student'); // Reset to default value if needed
         } catch (err) {
             setError('Failed to submit the form. Please try again.');
             setLoading(false);
@@ -100,7 +100,7 @@ debugger;
                 </select>
             </div>
             <div className="mb-3">
-                <input type="text" className="form-control" placeholder="Intrested in subject" value={subject} onChange={(e) => setSubject(e.target.value)} />
+                <input type="text" className="form-control" placeholder="Interested in subject" value={subject} onChange={(e) => setSubject(e.target.value)} />
             </div>
             <button type="submit" className="btn btn-primary" disabled={loading}>
                 {loading ? 'Submitting...' : 'Submit'}
