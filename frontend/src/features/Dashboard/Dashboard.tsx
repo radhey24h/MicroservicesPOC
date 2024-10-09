@@ -6,6 +6,8 @@ import logo from '../../assets/img/logo.png';
 import './Dashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const Dashboard = () => {
     const [alreadyLogin, setAlreadyLogin] = useState(false);
@@ -72,22 +74,7 @@ const Dashboard = () => {
             />
 
             <div className="container" style={{ position: 'relative' }}>
-                <div className="row">
-                    <div className="col-12 d-flex justify-content-end align-items-center mb-3">
-                        <div className="navigation-right">
-                            <i className="icofont-phone" /> +91-989-977-4341
-                            <i className="icofont-clock-time icofont-rotate-180" /> Wed-Sun: Opening at 6:30 AM
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-12 d-flex justify-content-center align-items-center mb-3">
-                        <div className="elementor-image">
-                            <img src={logo} alt="Logo" />
-                        </div>
-                    </div>
-                </div>
+                <Header />
                 <div className="row text-center mb-4">
                     <div className="col-12 d-flex justify-content-center">
                         <div className="elementor-heading">
@@ -103,25 +90,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 d-flex justify-content-center">
-                        <div className="social-links d-flex justify-content-around">
-                            <a href="https://twitter.com/stepuplogics" target="_blank" rel="noreferrer" className="twitter mx-2">
-                                <i className="fab fa-twitter" />
-                            </a>
-                            <a href="https://www.facebook.com/stepuplogics/" target="_blank" rel="noreferrer" className="facebook mx-2">
-                                <i className="fab fa-facebook-f" />
-                            </a>
-                            <a href="https://www.instagram.com/stepuplogics/" target="_blank" rel="noreferrer" className="instagram mx-2">
-                                <i className="fab fa-instagram" />
-                            </a>
-                            <a href="https://www.kooapp.com/profile/stepuplogics" target="_blank" rel="noreferrer" className="google-plus mx-2">
-                                <i className="fab fa-google-plus-g" />
-                            </a>
-                            <a href="https://www.linkedin.com/company/stepup-logics" target="_blank" rel="noreferrer" className="linkedin mx-2">
-                                <i className="fab fa-linkedin-in" />
-                            </a>
-                        </div>
-                    </div>
+                    <Footer />
                 </div>
             </div>
 

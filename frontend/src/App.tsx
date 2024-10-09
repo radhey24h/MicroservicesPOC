@@ -1,4 +1,4 @@
-import Particle from "./components/Particle/Particle";
+import Particle from "./features/Home/Home";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from "./features/Dashboard/Dashboard";
 

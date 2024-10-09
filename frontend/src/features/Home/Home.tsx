@@ -2,15 +2,16 @@ import { useCallback, useState } from "react";
 import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
-import logo from '../../assets/img/logo.png';
 import ITImages from '../../assets/img/hero-it-img.png';
-import Register from "../../features/User/Register/Register";
-import './Particle.css';
+import Register from "../User/Register/Register";
+import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import Login from "../../features/User/Login/Register";
+import Login from "../User/Login/Register";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
-const Particle = () => {
+const Home = () => {
     const [loginOrRegister, setLoginOrRegister] = useState(false);
 
     const toggleView = () => {
@@ -78,22 +79,9 @@ const Particle = () => {
             />
 
             <div className="container" style={{ position: 'relative' }}>
-                <div className="row">
-                    <div className="col-12 d-flex justify-content-end align-items-center mb-3">
-                        <div className="navigation-right">
-                            <i className="icofont-phone" /> +91-989-977-4341
-                            <i className="icofont-clock-time icofont-rotate-180" /> Wed-Sun: Opening at 6:30 AM
-                        </div>
-                    </div>
-                </div>
+                <Header />
 
-                <div className="row">
-                    <div className="col-12 d-flex justify-content-center align-items-center mb-3">
-                        <div className="elementor-image">
-                            <img src={logo} alt="Logo" />
-                        </div>
-                    </div>
-                </div>
+
                 <div className="row text-center mb-4">
                     <div className="col-12 d-flex justify-content-center">
                         <div className="elementor-heading">
@@ -109,14 +97,14 @@ const Particle = () => {
                         <img src={ITImages} alt="IT Trainings" className="img-fluid" style={{ height: '60%', width: '50%' }} />
                         <h5 className="elementor-fadeInDown">
                             We are offering free training sessions on AWS, Azure, React-JS and dotnet core.
-                            <br></br>Sessions are held daily from 6:00 to 9:00 PM.
+                            <br></br>Sessions are held daily from 8:00 to 10:00 PM.
                         </h5>
                     </div>
                     <div className="col-md-5 text-center mb-4">
                         <div className="form-background">
                             <h5 className="elementor-fadeInDown">Please enter your details here! &nbsp;
-                                <a  style={{ cursor: 'pointer'}} onClick={toggleView} >
-                                    {loginOrRegister ? 'Register' : 'Login' }
+                                <a style={{ cursor: 'pointer' }} onClick={toggleView} >
+                                    {loginOrRegister ? 'Register' : 'Login'}
                                 </a></h5>
                             <br />
                             {loginOrRegister ? <Login /> : <Register />}
@@ -125,25 +113,7 @@ const Particle = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-12 d-flex justify-content-center">
-                        <div className="social-links d-flex justify-content-around">
-                            <a href="https://twitter.com/stepuplogics" target="_blank" rel="noreferrer" className="twitter mx-2">
-                                <i className="fab fa-twitter" />
-                            </a>
-                            <a href="https://www.facebook.com/stepuplogics/" target="_blank" rel="noreferrer" className="facebook mx-2">
-                                <i className="fab fa-facebook-f" />
-                            </a>
-                            <a href="https://www.instagram.com/stepuplogics/" target="_blank" rel="noreferrer" className="instagram mx-2">
-                                <i className="fab fa-instagram" />
-                            </a>
-                            <a href="https://www.kooapp.com/profile/stepuplogics" target="_blank" rel="noreferrer" className="google-plus mx-2">
-                                <i className="fab fa-google-plus-g" />
-                            </a>
-                            <a href="https://www.linkedin.com/company/stepup-logics" target="_blank" rel="noreferrer" className="linkedin mx-2">
-                                <i className="fab fa-linkedin-in" />
-                            </a>
-                        </div>
-                    </div>
+                    <Footer />
                 </div>
             </div>
 
@@ -151,4 +121,4 @@ const Particle = () => {
     );
 };
 
-export default Particle;
+export default Home;
