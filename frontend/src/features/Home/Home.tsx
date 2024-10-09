@@ -7,7 +7,7 @@ import Register from "../User/Register/Register";
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import Login from "../User/Login/Register";
+import Login from "../User/Login/Login";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 

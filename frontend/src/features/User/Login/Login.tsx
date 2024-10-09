@@ -69,7 +69,7 @@ const Login: React.FC = () => {
                 <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="mb-3">
-                <input type="text" className="form-control" placeholder="Name" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button type="submit" className="btn btn-primary" disabled={loading}>
                 {loading ? 'Processing...' : 'Login'}
