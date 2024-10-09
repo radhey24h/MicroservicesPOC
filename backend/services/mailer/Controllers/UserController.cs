@@ -16,8 +16,8 @@ public class UsersController : ControllerBase
         _smtpSettings = smtpSettings.Value;
     }
 
-    [HttpPost(Name = "postUser")]
-    public async Task<IActionResult> PostUser([FromBody] User user)
+    [HttpPost(Name = "sendEmail")]
+    public async Task<IActionResult> SendEmail([FromBody] User user)
     {
         if (user == null)
         {

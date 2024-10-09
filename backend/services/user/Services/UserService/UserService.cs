@@ -3,6 +3,7 @@ using Users.Models.Entities;
 using Users.Models.Enums;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Amazon.Runtime;
 
 namespace Users.Services.UserService
 {
@@ -11,9 +12,12 @@ namespace Users.Services.UserService
 
         private readonly IConfiguration _configuration;
         private readonly IMongoCollection<User> _userCollection;
-        public UserService(IConfiguration configuration)
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public UserService(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             _configuration = configuration;
+            _httpClientFactory = httpClientFactory;
             var mongoDBSettings = _configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
             MongoClientSettings settings = MongoClientSettings.FromConnectionString(mongoDBSettings.ConnectionString);
             settings.RetryWrites = false;
@@ -66,6 +70,41 @@ namespace Users.Services.UserService
             //
             // use http client to send the message either using broker or httpclient 
             //
+            
+            SendEmailToUser(user);
+        }
+
+        private async void SendEmailToUser(User user)
+        {
+            var mailRequest = new
+            {
+                Name = user.FirstName + " "+ user.LastName,
+                Email = user.Email,
+                Subject = user.Subject,
+                PhoneNumber = user.PhoneNumber,
+                UserType = user.UserType
+            };
+
+            // Use HttpClient to send the message to the mailer API
+            var client = _httpClientFactory.CreateClient("MailerApi");
+
+            try
+            {
+                // Send a POST request to the mailer API
+                var response = await client.PostAsJsonAsync("mailerapi/sendEmail", mailRequest);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    // Handle the error (e.g., log it, throw an exception, etc.)
+                    throw new Exception("Failed to send email.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions that might occur during the HTTP request
+                // Log the error or take appropriate action
+                throw new Exception("Error occurred while sending email: " + ex.Message);
+            }
         }
 
         public async Task CreateBulkUserAsync(bool deletePreviousRecord, int totalRecord)
@@ -101,7 +140,6 @@ namespace Users.Services.UserService
                     user.Password = user.FirstName + "@" + user.LastName + $"{i + 1}";
                 }
 
-                user.ProfilePic = $"profile_pic_{i + 1}.jpg";
                 user.PhoneNumber = $"123-456-{i.ToString("D3")}";
                 user.IsLocked = random.Next(2) == 0;
 
@@ -155,7 +193,6 @@ namespace Users.Services.UserService
                 .Set(u => u.FirstName, user.FirstName)
                 .Set(u => u.LastName, user.LastName)
                 .Set(u => u.Email, user.Email)
-                .Set(u => u.ProfilePic, user.ProfilePic)
                 .Set(u => u.Roles, user.Roles)
                 .Set(u => u.PhoneNumber, user.PhoneNumber)
                 .Set(u => u.IsLocked, user.IsLocked)

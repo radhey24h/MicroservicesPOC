@@ -12,8 +12,10 @@ public class User : BaseEntity
     public string? LastName { get; set; }
     [BsonElement("email")]
     public string? Email { get; set; }
-    [BsonElement("profilePic")]
-    public string? ProfilePic { get; set; }
+    [BsonElement("userType")]
+    public string? UserType { get; set; }
+    [BsonElement("subject")]
+    public string? Subject { get; set; }
     [BsonElement("role")]
     [BsonRepresentation(BsonType.String)]
     public IEnumerable<Role>? Roles { get; set; }

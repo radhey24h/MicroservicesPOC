@@ -23,6 +23,10 @@ if (corsEnabled)
     });
 }
 
+// You can also configure named clients with specific settings
+builder.Services.AddHttpClient("MailerApi", c => { c.BaseAddress = new Uri(builder.Configuration.GetSection("MailerAPIEndpoint").Get<string>()); });
+
+
 // Add services to the container.
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));

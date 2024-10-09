@@ -45,8 +45,9 @@ const UserForm: React.FC = () => {
             return;
         }
 
-        if (!email.trim()) {
-            setError('Email is required.');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError('Invalid email format.');
             setLoading(false);
             return;
         }
@@ -59,9 +60,9 @@ const UserForm: React.FC = () => {
             phoneNumber,
             userType,
         };
-
+debugger;
         try {
-            await axios.post('/api/users', user);
+            await axios.post('https://localhost:7256/userapi/createUser', user);
             setLoading(false);
             // You can reset the form here if needed
             setFirstName('');
