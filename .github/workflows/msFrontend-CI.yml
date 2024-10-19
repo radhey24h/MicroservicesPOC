@@ -30,11 +30,15 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }} # Or DOCKERHUB_PASSWORD
 
-    # Get the short Git commit SHA and assign it to IMAGE_TAG
-    - name: Get the Git commit SHA
-      run: echo "IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ github.sha }}" >> $GITHUB_ENV
+    # Set the version number and create the image tag
+    - name: Set Image Tag
+      run: |
+        VERSION="1.0.0"  # Set your version here
+        SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/frontend:${VERSION}-${SHORT_SHA}"
+        echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
-    # Build the Docker image using the Git commit SHA as the tag
+    # Build the Docker image
     - name: Build the Docker image
       run: docker build ./frontend --file frontend/Dockerfile --tag ${{ env.IMAGE_TAG }}
       
