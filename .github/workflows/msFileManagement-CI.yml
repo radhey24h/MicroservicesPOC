@@ -4,12 +4,12 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'backend/services/fileManagement/**'
+      - 'backend/services/file-management/**'
   pull_request:
     branches:
       - 'main'
     paths:
-      - 'backend/services/fileManagement/**'
+      - 'backend/services/file-management/**'
 
 jobs:
   build:
@@ -40,7 +40,7 @@ jobs:
 
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./backend/services/fileManagement --file backend/services/fileManagement/Dockerfile --tag ${{ env.IMAGE_TAG }}
+      run: docker build ./backend/services/file-management --file backend/services/file-management/Dockerfile --tag ${{ env.IMAGE_TAG }}
       
     # Push the Docker image to Docker Hub
     - name: Push the Docker image
