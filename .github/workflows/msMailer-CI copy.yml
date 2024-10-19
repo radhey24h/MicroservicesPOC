@@ -6,7 +6,8 @@ on:
     paths:
       - 'backend/services/mailer/**'
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - 'main'
     paths:
       - 'backend/services/mailer/**'
 
@@ -29,10 +30,18 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }} # Or DOCKERHUB_PASSWORD
 
+    # Set the version number and create the image tag
+    - name: Set Image Tag
+      run: |
+        VERSION="1.0.0"  # Set your version here
+        SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/mailer:${VERSION}-${SHORT_SHA}"
+        echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./backend/services/mailer --file backend/services/mailer/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/mailer:$(date +%s)
+      run: docker build ./backend/services/mailer --file backend/services/mailer/Dockerfile --tag ${{ env.IMAGE_TAG }}
       
     # Push the Docker image to Docker Hub
     - name: Push the Docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/mailer:$(date +%s)
+      run: docker push ${{ env.IMAGE_TAG }}
