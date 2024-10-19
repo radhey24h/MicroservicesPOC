@@ -30,14 +30,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }} # Or DOCKERHUB_PASSWORD
 
-    # Build the Docker image
+    # Build the Docker image and assign tag to a common variable
     - name: Build the Docker image
       run: |
         IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/frontend:$(date +%s)
+        echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
         docker build ./frontend --file frontend/Dockerfile --tag $IMAGE_TAG
       
     # Push the Docker image to Docker Hub
     - name: Push the Docker image
       run: |
-        IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/frontend:$(date +%s)
-        docker push $IMAGE_TAG
+        docker push ${{ env.IMAGE_TAG }}
