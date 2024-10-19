@@ -92,7 +92,7 @@ const Home = () => {
                     </div>
                     <div className="marquee-container">
                         <h5 className="marquee-text elementor-fadeInDown">
-                            We are offering free training sessions on AWS, Azure, React-JS and dotnet core.
+                            We are offering live training sessions on AWS, Azure, React-JS and dotnet core.
                         </h5>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const Home = () => {
                     </div>
                     <div className="col-md-5 text-center mb-4">
                         <div className="form-background">
-                            <h5 className="elementor-fadeInDown">Please enter your details for free session! &nbsp;
+                            <h5 className="elementor-fadeInDown">Please enter your details for live session! &nbsp;
                             </h5>
                             <br />
                             <UserForm />
