@@ -30,14 +30,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }} # Or DOCKERHUB_PASSWORD
 
-    # Build the Docker image and assign tag to a common variable
+    # Get the short Git commit SHA and assign it to IMAGE_TAG
+    - name: Get the Git commit SHA
+      run: echo "IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ github.sha }}" >> $GITHUB_ENV
+
+    # Build the Docker image using the Git commit SHA as the tag
     - name: Build the Docker image
-      run: |
-        IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/frontend:$(date +%s)
-        echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
-        docker build ./frontend --file frontend/Dockerfile --tag $IMAGE_TAG
+      run: docker build ./frontend --file frontend/Dockerfile --tag ${{ env.IMAGE_TAG }}
       
     # Push the Docker image to Docker Hub
     - name: Push the Docker image
-      run: |
-        docker push ${{ env.IMAGE_TAG }}
+      run: docker push ${{ env.IMAGE_TAG }}
