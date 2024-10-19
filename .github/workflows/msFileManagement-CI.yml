@@ -35,7 +35,7 @@ jobs:
       run: |
         VERSION="1.0.0"  # Set your version here
         SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
-        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/fileManagement:${VERSION}-${SHORT_SHA}"
+        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/filemanagement:${VERSION}-${SHORT_SHA}"
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
     # Build the Docker image
