@@ -61,4 +61,5 @@ jobs:
         git commit -m "Increment version to ${{ env.VERSION }}"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use the PAT if the default token doesn't work
+
