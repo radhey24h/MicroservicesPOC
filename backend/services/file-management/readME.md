@@ -141,4 +141,4 @@ npm run docker:run:prod
 
 docker build -t filemanagement:latest .
 
-docker run -p 5002:5002 filemanagement:latest
+docker run -p 3202:3202 filemanagement:latest

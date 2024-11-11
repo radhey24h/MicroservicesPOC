@@ -77,4 +77,4 @@ jobs:
         git commit -m "Increment version to ${{ env.NEW_VERSION }} for $PIPELINE_NAME"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use a PAT if the default token doesn't work
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
