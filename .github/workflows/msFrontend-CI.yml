@@ -62,8 +62,9 @@ jobs:
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git add $PIPELINE_VERSION_FILE
-        git commit -m "Increment version to ${{ env.VERSION }} for frontend pipeline"
+        git add version-frontend.txt  # Explicitly add the new version file
+        git commit -m "Increment version to ${{ env.VERSION }}"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use a PAT if necessary
+
