@@ -30,13 +30,20 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }} # Or DOCKERHUB_PASSWORD
 
-    # Set the version number and create the image tag
+    # Set the version number and create the image tag dynamically
     - name: Set Image Tag
       run: |
-        VERSION="1.0.0"  # Set your version here
-        SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
-        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/frontend:${VERSION}-${SHORT_SHA}"
+        if [ -f version.txt ]; then
+          VERSION=$(cat version.txt)
+          VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1} 1' | sed 's/ /./g')
+        else
+          VERSION="1.0"
+        fi
+        
+        echo $VERSION > version.txt
+        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/user:${VERSION}"
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
 
     # Build the Docker image
     - name: Build the Docker image
@@ -45,3 +52,14 @@ jobs:
     # Push the Docker image to Docker Hub
     - name: Push the Docker image
       run: docker push ${{ env.IMAGE_TAG }}
+
+    # Commit and push the updated version file back to the repository
+    - name: Commit version increment
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add version.txt
+        git commit -m "Increment version to ${{ env.VERSION }}"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use the PAT if the default token doesn't work
