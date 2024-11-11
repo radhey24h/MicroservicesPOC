@@ -34,7 +34,7 @@ jobs:
     - name: Update version in version.txt for 'frontend'
       run: |
         PIPELINE_NAME="frontend"
-        VERSION_FILE="version.txt"
+        VERSION_FILE="frontend/version.txt"
         
         # Check if the pipeline version exists in the file
         if grep -q "^$PIPELINE_NAME=" $VERSION_FILE; then
