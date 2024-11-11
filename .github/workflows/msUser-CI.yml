@@ -70,7 +70,7 @@ jobs:
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git add version.txt
+        git add -A
         git commit -m "Increment version for $PIPELINE_NAME to ${{ env.NEW_VERSION }}"
         git push
       env:
