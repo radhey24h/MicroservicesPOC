@@ -43,7 +43,7 @@ export const Main = async () => {
     httpServer = http.createServer(app);
     httpServer.listen(config.server.port, () => {
         logging.log('----------------------------------------');
-        logging.log(`Server started on ${config.server.hostname}:${config.server.port}`);
+        logging.log(`Server started on ${config.server.hostname}:${config.server.port}: and ${process.env.NODE_ENV}`);
         logging.log('----------------------------------------');
     });
 };
