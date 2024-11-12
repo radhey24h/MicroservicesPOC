@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filemanagmentapi-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: filemanagmentapi
+  template:
+    metadata:
+      labels:
+        app: filemanagmentapi
+    spec:
+      containers:
+      - name: filemanagmentapi-container
+        image: radhey24h/filemanagmentapi:0.0.1
+        ports:
+        - containerPort: 3202
+        env:
+          - name: PORT
+            value: 3202
+          - name: NODE_ENV
+            value: "qa"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: filemanagmentapi-service
+spec:
+  selector:
+    app: filemanagmentapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3202
+  type: ClusterIP

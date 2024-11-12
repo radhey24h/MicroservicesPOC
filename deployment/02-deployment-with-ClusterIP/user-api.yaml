@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userapi-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: userapi
+  template:
+    metadata:
+      labels:
+        app: userapi
+    spec:
+      containers:
+      - name: userapi-container
+        image: radhey24h/userapi:0.0.1
+        ports:
+        - containerPort: 3200
+        env:
+          - name: ASPNETCORE_URLS
+            value: "http://*3201"
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "QA"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: userapi-service
+spec:
+  selector:
+    app: userapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3200
+  type: ClusterIP

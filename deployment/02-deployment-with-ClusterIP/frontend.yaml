@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend-container
+        image: radhey24h/frontend:0.0.1
+        ports:
+        - containerPort: 80
+        env:
+        - name: FRONTEND_APP_CLIENT_NAME
+          value: "Stepuplogics"
+        - name: FRONTEND_APP_WEB_API_BASE_URL
+          value: "https://test.stepuplogics.com"
+        - name: FRONTEND_APP_WEB_API_PORT
+          value: "443"
+        - name: FRONTEND_APP_ENVIRONMENT
+          value: "qa"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

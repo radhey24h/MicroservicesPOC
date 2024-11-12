@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailerapi-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mailerapi
+  template:
+    metadata:
+      labels:
+        app: mailerapi
+    spec:
+      containers:
+      - name: mailerapi-container
+        image: radhey24h/mailerapi:0.0.1
+        ports:
+        - containerPort: 3201
+        env:
+          - name: ASPNETCORE_URLS
+            value: "http://*3201"
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "QA"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailerapi-service
+spec:
+  selector:
+    app: mailerapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3201
+  type: LoadBalancer
