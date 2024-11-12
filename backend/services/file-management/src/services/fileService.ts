@@ -2,7 +2,7 @@ import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
 import { Request, Response, NextFunction } from 'express';
 import logging from '../config/logging';
 import { config } from '../config/config';
-import fs from "fs";
+import fs from 'fs';
 
 export class FileService {
   private blobServiceClient: BlobServiceClient;
@@ -27,7 +27,7 @@ export class FileService {
       );
       res.status(200).send(data);
     } catch (error) {
-      logging.error("getFile", error);
+      logging.error('getFile', error);
       next(error);
     }
   }
@@ -40,7 +40,7 @@ export class FileService {
       }
       res.status(200).json(blobs);
     } catch (error) {
-      logging.error("getFiles", error);
+      logging.error('getFiles', error);
       next(error);
     }
   }
@@ -49,7 +49,7 @@ export class FileService {
     try {
       const file = req.file; // The uploaded file
       if (!file) {
-        res.status(400).send("No file uploaded.");
+        res.status(400).send('No file uploaded.');
         return;
       }
 
@@ -63,7 +63,7 @@ export class FileService {
       // Clean up the local file after uploading
       fs.unlinkSync(file.path);
     } catch (error) {
-      logging.error("uploadFile", error);
+      logging.error('uploadFile', error);
       next(error);
     }
   }
@@ -75,23 +75,23 @@ export class FileService {
       await blockBlobClient.delete();
       res.status(200).send(`File deleted: ${blobName}`);
     } catch (error) {
-      logging.error("deleteFile", error);
+      logging.error('deleteFile', error);
       next(error);
     }
   }
 
-  private async streamToString(
-    readableStream: NodeJS.ReadableStream
-  ): Promise<string> {
+  private async streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
     return new Promise((resolve, reject) => {
       const chunks: Buffer[] = [];
-      readableStream.on("data", (data) => {
+      readableStream.on('data', (data) => {
         chunks.push(data instanceof Buffer ? data : Buffer.from(data));
       });
-      readableStream.on("end", () => {
-        resolve(Buffer.concat(chunks).toString("utf-8"));
+      readableStream.on('end', () => {
+        resolve(Buffer.concat(chunks).toString());
       });
-      readableStream.on("error", reject);
+      readableStream.on('error', (err) => {
+        reject(err);
+      });
     });
   }
 }

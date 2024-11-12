@@ -12,6 +12,10 @@ export const app = express();
 export let httpServer: ReturnType<typeof http.createServer>;
 
 export const Main = async () => {
+    logging.log('----------------------------------------');
+    logging.log(`Server will start on ${config.server.hostname}:${config.server.port}: and env is ${process.env.NODE_ENV}`);
+    logging.log('----------------------------------------');
+
     logging.info('........................');
     logging.info('Starting server...');
     logging.info('........................');
@@ -39,7 +43,7 @@ export const Main = async () => {
     httpServer = http.createServer(app);
     httpServer.listen(config.server.port, () => {
         logging.log('----------------------------------------');
-        logging.log(`Server started on ${config.server.hostname}:${config.server.port}: and env is ${process.env.NODE_ENV}`);
+        logging.log(`Server started on ${config.server.hostname}:${config.server.port}`);
         logging.log('----------------------------------------');
     });
 };
