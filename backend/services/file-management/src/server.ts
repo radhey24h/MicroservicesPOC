@@ -30,10 +30,6 @@ export const Main = async () => {
     logging.log('----------------------------------------');
     const appRouter = new AppRouter();
     appRouter.routes(app);
-
-    logging.log('----------------------------------------');
-    logging.log('Define Routing Error');
-    logging.log('----------------------------------------');
     app.use(routeNotFound);
 
 
