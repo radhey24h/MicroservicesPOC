@@ -22,9 +22,12 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UsePathBase("/mailerapi");
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "User API v1");
+    c.RoutePrefix = "mailerapi"; // Sets the Swagger UI route to /mailerapi
+});
 app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 

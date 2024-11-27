@@ -6,7 +6,7 @@ using Users.Services.UserService;
 using Microsoft.AspNetCore.Mvc;
 namespace Users.Controllers;
 
-[Route("controller/[action]")]
+[Route("userapi/[action]")]
 [ApiController]
 public class UserController : ControllerBase
 {

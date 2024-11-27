@@ -41,12 +41,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UsePathBase("/userapi");
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "User API v1");
+    c.RoutePrefix = "userapi"; // Sets the Swagger UI route to /userapi
+});
 //}
 
 app.UseHttpsRedirection();

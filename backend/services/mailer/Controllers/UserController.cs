@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Mail;
 
-[Route("controller/[action]")]
+[Route("mailerapi/[action]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
