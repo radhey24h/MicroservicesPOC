@@ -41,7 +41,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UsePathBase("userapi");
+app.UsePathBase("/userapi");
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
