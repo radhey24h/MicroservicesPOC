@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: filemanagmentapi-deployment
+  name: fileapi-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: filemanagmentapi
+      app: fileapi
   template:
     metadata:
       labels:
-        app: filemanagmentapi
+        app: fileapi
     spec:
       containers:
-      - name: filemanagmentapi-container
-        image: radhey24h/filemanagmentapi:0.0.1
+      - name: fileapi-container
+        image: radhey24h/fileapi:0.0.1
         ports:
         - containerPort: 3202
         env:
@@ -27,10 +27,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: filemanagmentapi-service
+  name: fileapi-service
 spec:
   selector:
-    app: filemanagmentapi
+    app: fileapi
   ports:
   - protocol: TCP
     port: 80

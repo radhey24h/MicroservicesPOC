@@ -1,15 +1,15 @@
-name: Docker FileManagement CI
+name: Docker File CI
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'backend/services/file-management/**'
+      - 'backend/services/file/**'
   pull_request:
     branches:
       - 'main'
     paths:
-      - 'backend/services/file-management/**'
+      - 'backend/services/file/**'
 
 jobs:
   build:
@@ -30,10 +30,10 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     # Read and update the version for the specific pipeline
-    - name: Update version in version.txt for 'filemanagement'
+    - name: Update version in version.txt for 'file'
       run: |
-        PIPELINE_NAME="filemanagement"
-        VERSION_FILE="backend/services/file-management/version.txt"
+        PIPELINE_NAME="file"
+        VERSION_FILE="backend/services/file/version.txt"
         
         # Retrieve the current version from the version file, if it exists
         if [ -f $VERSION_FILE ]; then
@@ -52,14 +52,14 @@ jobs:
         echo "$NEW_VERSION" > $VERSION_FILE
         
         # Set the image tag based on the new version
-        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/filemanagementapi:${NEW_VERSION}"
+        IMAGE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/fileapi:${NEW_VERSION}"
         
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
         echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
       
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./backend/services/file-management --file backend/services/file-management/Dockerfile --tag ${{ env.IMAGE_TAG }}
+      run: docker build ./backend/services/file --file backend/services/file/Dockerfile --tag ${{ env.IMAGE_TAG }}
       
     # Push the Docker image to Docker Hub with retries
     - name: Push the Docker image with retries
@@ -73,7 +73,7 @@ jobs:
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git add backend/services/file-management/version.txt
+        git add backend/services/file/version.txt
         git commit -m "Increment version to ${{ env.NEW_VERSION }} for $PIPELINE_NAME"
         git push
       env:

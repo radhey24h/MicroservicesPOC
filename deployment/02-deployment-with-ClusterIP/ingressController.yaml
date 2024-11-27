@@ -2,13 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: microservices-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    #nginx.ingress.kubernetes.io/ssl-redirect: "true"  # To ensure HTTPS traffic if TLS is enabled
 spec:
+  ingressClassName: nginx
   rules:
-  - host: yourdomain.com
-    http:
+  - http:
       paths:
       - path: /userapi
         pathType: Prefix
@@ -24,11 +21,11 @@ spec:
             name: mailerapi-service
             port:
               number: 80
-      - path: /filemanagmentapi
+      - path: /fileapi
         pathType: Prefix
         backend:
           service:
-            name: filemanagmentapi-service
+            name: fileapi-service
             port:
               number: 80
       - path: /
