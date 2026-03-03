@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Users.Models.Entities;
-
+// triggering the build
 public class User : BaseEntity
 {
     [BsonElement("firstName")]
